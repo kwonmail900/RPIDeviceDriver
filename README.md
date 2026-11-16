@@ -75,3 +75,18 @@ cd RPIDeviceDriver-main
 이 실습은 **레거시 정수 GPIO API**를 교육 목적으로 보여줍니다. 최신 제품 개발에는 GPIO Descriptor API 권장. 기존 보드 Device Tree는 사용하나, **사용자 정의 Overlay는 작성하지 않습니다.**
 
 소스: GPL-2.0 커널 모듈 / MIT 응용 프로그램.
+
+## 실습교안 다운로드 (Word / PDF)
+
+- [Word 교안 (DOCX)](docs/RPi_LED_Character_Driver_Application_Lab_Guide.docx)
+- [PDF 교안](docs/RPi_LED_Character_Driver_Application_Lab_Guide.pdf)
+- [교안 원고 (Markdown)](docs/Guide.md)
+
+직접 다운로드:
+
+```bash
+wget https://raw.githubusercontent.com/kwonmail900/RPIDeviceDriver/main/docs/RPi_LED_Character_Driver_Application_Lab_Guide.docx
+wget https://raw.githubusercontent.com/kwonmail900/RPIDeviceDriver/main/docs/RPi_LED_Character_Driver_Application_Lab_Guide.pdf
+```
+
+PDF/DOCX는 `docs/Guide.md`에서 자동 생성되므로 교안 내용 변경 시 원고를 수정하세요.
