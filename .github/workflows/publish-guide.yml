@@ -1,0 +1,42 @@
+name: Publish lab guide (DOCX/PDF)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/Guide.md"
+      - "docs/build_guides.py"
+      - ".github/workflows/publish-guide.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install document dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-nanum
+          python -m pip install --disable-pip-version-check python-docx reportlab
+      - name: Generate Word and PDF guides
+        run: python docs/build_guides.py
+      - name: Commit generated lab guides
+        run: |
+          git add docs/*.docx docs/*.pdf
+          if git diff --cached --quiet; then
+            echo "No changes to published documents."
+          else
+            git -c user.name="github-actions[bot]" \
+                -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+                commit -m "Publish generated DOCX and PDF lab guides"
+            git push origin HEAD:main
+          fi
